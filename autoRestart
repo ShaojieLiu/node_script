@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+// node autoRestart.js server.js
+
+const fs = require('fs')
+const shell = require("shelljs")
+const chalk = require('chalk')
+const log = console.log.bind(console)
+const logVip = (...args) => log(chalk.green.bgBlack.bold(...args))
+
+const watch = (filePath, temp='', thread) => {
+    const restart = () => {
+        thread && thread.kill()
+        thread = shell.exec('node ' + filePath, {async: true, silent: false})
+        const date = new Date().toLocaleString()
+        logVip(date, '*** File changed, restart! ***')
+    }
+    restart()
+    fs.watch(filePath, restart)
+}
+
+const main = () => {
+    const filePath = process.argv[2]
+    watch(filePath)
+}
+
+main()

@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+const log = console.log.bind(console)
+const fs = require('fs')
+
+const rename = (ext1, ext2) => {
+    if (!(ext1 && ext2)) {
+        log('Argument Error: please enter ext1 and ext2 !')
+        return;
+    }
+
+    const list = fs.readdirSync('./')
+    const output = []
+    list.forEach(f => {
+        if (f.endsWith(ext1)) {
+            const name = f.slice(0, - ext1.length - 1)
+            const newName = `${name}.${ext2}`
+            output.push(newName)
+            fs.renameSync(`./${f}`, `./${newName}`)
+        }
+    })
+    log(output)
+}
+
+const main = () => {
+    rename(...process.argv.slice(2)) // 前两个参数是 node 和 filename
+}
+
+main()

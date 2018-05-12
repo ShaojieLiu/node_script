@@ -1,0 +1,18 @@
+{
+  "name": "node_script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "liushaojie",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.3.1",
+    "cheerio": "^1.0.0-rc.2",
+    "q": "^1.5.1",
+    "shelljs": "^0.8.1"
+  }
+}
