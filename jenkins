@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+const shell = require("shelljs")
+const rep = process.argv[2]
+const cmd = [
+    'cd ./' + rep,
+    'git pull origin master:master',
+    'npm start'
+]
+shell.exec(cmd.join(' && '), {async: true, silent: false})
+
